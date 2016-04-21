@@ -34,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['language'] = array
 	'inputType'               => 'text',
 	'filter'                  => true,
 	'eval'                    => array('tl_class'=>'w50'),
-	'save_callback'			  => array('MultiLanguageBE', 'CollectLanguagesCE'),
+	'save_callback'		  => array('MultiLanguageBE', 'CollectLanguagesCE'),
 	'sql'                     => "varchar(10) NOT NULL default ''"
 );
 

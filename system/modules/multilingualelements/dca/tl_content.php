@@ -34,7 +34,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['language'] = array
 	'inputType'               => 'text',
 	'filter'                  => true,
 	'eval'                    => array('tl_class'=>'w50'),
-	'save_callback'		  => array('MultiLanguageBE', 'CollectLanguagesCE'),
+	'save_callback'			  => array('MultiLanguageBE', 'CollectLanguagesCE'),
 	'sql'                     => "varchar(10) NOT NULL default ''"
 );
 
@@ -53,7 +53,17 @@ class MultiLanguageContent extends tl_content
 
 	public function addLabeltoElement($arrRow)
 	{
-		$strElement = parent::addCteType($arrRow);
+		// Check if ContentBlock extension is loaded
+		if (in_array('Contao\ContentBlocks', array_flip(ClassLoader::getClasses())))
+		{
+			$strElement = \tl_content_element::addCteType($arrRow);
+		}
+		else
+		{
+			$strElement = \tl_content::addCteType($arrRow);
+		}
+		
+		
 		if ($arrRow['language'])
 		{
 			$arrElement = explode('</div>', $strElement);

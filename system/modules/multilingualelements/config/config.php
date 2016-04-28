@@ -1,26 +1,22 @@
 <?php
-
-/**
- * Contao Open Source CMS
- *
- * Copyright (c) 2005-2015 Leo Feyer
- *
- * @package  	 MultiLingualElements
- * @author   	 Arne Stappen
- * @license  	 LGPL-3.0+ 
- * @copyright	 Arne Stappen 2015
- */
  
+ /**
+ * Contao Open Source CMS - MultiLingualElements extension
+ *
+ * Copyright (c) 2015-2016 Arne Stappen (aGoat)
+ *
+ *
+ * @package   contentblocks
+ * @author    Arne Stappen <http://agoat.de>
+ * @license	  LGPL-3.0+
+ */
+
 
 
 /**
  * HOOKS
- *
- * Hooks are stored in a global array called "TL_HOOKS". You can register your
- * own functions by adding them to the array.
  */
 
-
-$GLOBALS['TL_HOOKS']['getPageLayout'][] = array('MultiLanguageFE', 'getPageLayoutHook'); 
-$GLOBALS['TL_HOOKS']['isVisibleElement'][] = array('MultiLanguageFE', 'isVisibleElementHook'); 
+$GLOBALS['TL_HOOKS']['getPageLayout'][] = array('MultiLanguageFE', 'detectAndSetLanguage'); 
+$GLOBALS['TL_HOOKS']['isVisibleElement'][] = array('MultiLanguageFE', 'checkLanguage'); 
  

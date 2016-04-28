@@ -1,16 +1,16 @@
 <?php
-
-/**
- * Contao Open Source CMS
- *
- * Copyright (c) 2005-2015 Leo Feyer
- *
- * @package  	 MultiLingualElements
- * @author   	 Arne Stappen
- * @license  	 LGPL-3.0+ 
- * @copyright	 Arne Stappen 2015
- */
  
+ /**
+ * Contao Open Source CMS - MultiLingualElements extension
+ *
+ * Copyright (c) 2015-2016 Arne Stappen (aGoat)
+ *
+ *
+ * @package   contentblocks
+ * @author    Arne Stappen <http://agoat.de>
+ * @license	  LGPL-3.0+
+ */
+
 
 
 namespace Contao;
@@ -18,7 +18,14 @@ namespace Contao;
 
 class MultiLanguageFE extends Frontend
 {
-	public function getPageLayoutHook() 
+	/**
+	 * Detect and set the language
+	 *
+	 * @param none
+	 *
+	 * @return none
+	 */
+	public function detectAndSetLanguage() 
 	{ 
 
 		$objRootPage = \PageModel::findById($GLOBALS['objPage']->rootId);
@@ -45,9 +52,17 @@ class MultiLanguageFE extends Frontend
 		}
 	}
 
-	public function isVisibleElementHook($objElement, $blnIsVisible) 
+	/**
+	 * Check the elements language
+	 *
+	 * @param Database_Result $objElement   The database result object from tl_content, tl_module or tl_article
+	 * @param boolean         $blnIsVisible The current visibility state
+	 *
+	 * @return boolean The new visibility state
+	 */
+	public function checkLanguage($objElement, $blnIsVisible) 
 	{ 
-		if ($objElement->language)
+		if ($objElement->language && TL_MODE=='FE')
 		{
 			// check if elements language match
 			if ($objElement->language == $GLOBALS['TL_LANGUAGE'])
@@ -68,6 +83,13 @@ class MultiLanguageFE extends Frontend
 
 class MultiLanguageBE extends Backend
 {
+	/**
+	 * Collect the languages from all content elements under a page root
+	 *
+	 * @param object $dc The DataContainer object
+	 *
+	 * @return none
+	 */
 	public function CollectLanguages(DataContainer $dc)
 	{
 		// Get root page where this element belong to

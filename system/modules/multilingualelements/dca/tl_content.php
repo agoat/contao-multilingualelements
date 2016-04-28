@@ -1,16 +1,15 @@
 <?php
-
-/**
- * Contao Open Source CMS
+ /**
+ * Contao Open Source CMS - MultiLingualElements extension
  *
- * Copyright (c) 2005-2015 Leo Feyer
+ * Copyright (c) 2015-2016 Arne Stappen (aGoat)
  *
- * @package  	 MultiLingualElements
- * @author   	 Arne Stappen
- * @license  	 LGPL-3.0+ 
- * @copyright	 Arne Stappen 2015
+ *
+ * @package   contentblocks
+ * @author    Arne Stappen <http://agoat.de>
+ * @license	  LGPL-3.0+
  */
- 
+
 
 
 // add the language select field to all content elements
@@ -42,7 +41,9 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['language'] = array
 // some classes
 class MultiLanguageContent extends tl_content
 {
-
+	/**
+	 * Add language field
+	 */
 	public function addLangCE()
 	{
 		foreach ($GLOBALS['TL_DCA']['tl_content']['palettes'] as &$strPalette)
@@ -50,6 +51,10 @@ class MultiLanguageContent extends tl_content
 			$strPalette = str_replace(',type', ',type,language', $strPalette);
 		}
 	}
+
+	/**
+	 * Add language label to content element type
+	 */
 
 	public function addLabeltoElement($arrRow)
 	{

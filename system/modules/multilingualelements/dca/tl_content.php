@@ -62,11 +62,12 @@ class MultiLanguageContent extends tl_content
 		// Check if ContentBlock extension is loaded
 		if (in_array('Contao\ContentBlocks', array_flip(ClassLoader::getClasses())))
 		{
-			$strElement = \tl_content_element::addCteType($arrRow);
+			$tl_content_element = new tl_content_element();
+			$strElement = $tl_content_element->addCteType($arrRow);
 		}
 		else
 		{
-			$strElement = \tl_content::addCteType($arrRow);
+			$strElement = parent::addCteType($arrRow);
 		}
 		
 		

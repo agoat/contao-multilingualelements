@@ -64,12 +64,8 @@ class MultiLanguageFE extends Frontend
 	{ 
 		if ($objElement->language && TL_MODE=='FE')
 		{
-			// check if elements language match
-			if ($objElement->language == $GLOBALS['TL_LANGUAGE'])
-			{
-				$blnIsVisible = true;
-			}
-			else
+			// Make invisible if elements language don't match
+			if ($objElement->language != $GLOBALS['TL_LANGUAGE'])
 			{
 				$blnIsVisible = false;			
 			}
